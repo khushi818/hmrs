@@ -32,20 +32,20 @@ export default function AttendancePage() {
   };
 
   const handleMarkAttendance = async (emp: any) => {
-    const status = statusMap[emp._id];
+    const status = statusMap[emp.id];
     if (!status) {
       alert('Please select a status first');
       return;
     }
 
-    setMarkingId(emp._id);
+    setMarkingId(emp.id);
     try {
-      await markAttendance({ employee_id: emp._id, status });
+      await markAttendance({ employee_id: emp.id, status });
       await fetchTodayAttendance();
       // Clear the status for this employee
       setStatusMap(prev => {
         const newMap = { ...prev };
-        delete newMap[emp._id];
+        delete newMap[emp.id];
         return newMap;
       });
     } catch (error) {
@@ -63,6 +63,7 @@ export default function AttendancePage() {
     fetchTodayAttendance();
   }, []);
 
+  console.log('Marked Employees:', markedEmployees, notMarkedEmployee);
   return (
     <div className="attendance-page">
       {/* Header */}
@@ -215,7 +216,7 @@ export default function AttendancePage() {
             <tbody>
               {/* Unmarked Employees */}
               {notMarkedEmployee?.length > 0 && notMarkedEmployee.map(emp => (
-                <tr key={emp._id} className="unmarked-row">
+                <tr key={emp.id} className="unmarked-row">
                   <td>
                     <div className="employee-name">
                       <div className="employee-avatar pending-avatar">
@@ -232,8 +233,8 @@ export default function AttendancePage() {
                   <td>
                     <select
                       className="status-select"
-                      value={statusMap[emp._id] || ""}
-                      onChange={(e) => handleStatusChange(emp._id, e.target.value)}
+                      value={statusMap[emp.id] || ""}
+                      onChange={(e) => handleStatusChange(emp.id, e.target.value)}
                     >
                       <option value="" disabled>
                         Select status
@@ -247,9 +248,9 @@ export default function AttendancePage() {
                       <button
                         className="btn-mark"
                         onClick={() => handleMarkAttendance(emp)}
-                        disabled={!statusMap[emp._id] || markingId === emp._id}
+                        disabled={!statusMap[emp.id] || markingId === emp.id}
                       >
-                        {markingId === emp._id ? (
+                        {markingId === emp.id ? (
                           <>
                             <div className="btn-spinner"></div>
                             Marking...
@@ -298,7 +299,7 @@ export default function AttendancePage() {
 
               {/* Marked Employees */}
               {markedEmployees?.length > 0 && markedEmployees.map(emp => (
-                <tr key={emp._id} className="marked-row">
+                <tr key={emp.id} className="marked-row">
                   <td>
                     <div className="employee-name">
                       <div className="employee-avatar marked-avatar">

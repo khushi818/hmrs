@@ -6,6 +6,6 @@ export const markAttendance = (payload: {
 }) => api.post("/attendance", payload);
 
 export const getAttendance = (employee_id: string) =>
-  api.get(`/attendance/${employee_id}`);
+  api.get(`/attendance/history/${employee_id}`);
 
-export const getTodayAttendance = () => api.get("/today-attendance");
+export const getTodayAttendance = () => api.get("/attendance/today");

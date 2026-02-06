@@ -26,7 +26,7 @@ export default function AttendanceHistory({ employee, onClose }: AttendanceHisto
 
   useEffect(() => {
     setLoading(true);
-    getAttendance(employee._id)
+    getAttendance(employee.id)
       .then((res) => {
         console.log(res);
         setRecords(res);
