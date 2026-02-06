@@ -80,6 +80,9 @@ npm run dev
 
 **Frontend runs on:** http://localhost:5173
 
+<img width="1620" height="962" alt="Screenshot From 2026-02-06 23-30-45" src="https://github.com/user-attachments/assets/76b0c9c7-3efc-426a-b697-38389f03c14b" />
+
+
 ---
 
 
