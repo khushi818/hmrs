@@ -21,6 +21,7 @@ def attendance_record_data(record):
 def all_attendance_records_data(records):
     return [attendance_record_data(record) for record in records]
 
+
 exports = {
     "employee_data": employee_data,
     "all_employees_data": all__employees_data,
